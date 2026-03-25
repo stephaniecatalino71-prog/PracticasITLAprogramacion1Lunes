@@ -1,7 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-// Clase Paciente (modelo)
 class Paciente
 {
     public int Id { get; set; }
@@ -18,7 +17,6 @@ class Paciente
     }
 }
 
-// Clase SistemaPacientes (lógica)
 class SistemaPacientes
 {
     private List<Paciente> lista = new List<Paciente>();
@@ -95,40 +93,33 @@ class SistemaPacientes
     }
 }
 
-// Programa principal
-class Program
+SistemaPacientes sistema = new SistemaPacientes();
+bool salir = false;
+
+while (!salir)
 {
-    static void Main(string[] args)
+    Console.WriteLine("\n--- SISTEMA DE PACIENTES ---");
+    Console.WriteLine("1. Agregar paciente");
+    Console.WriteLine("2. Ver pacientes");
+    Console.WriteLine("3. Buscar paciente");
+    Console.WriteLine("4. Eliminar paciente");
+    Console.WriteLine("5. Salir");
+    Console.Write("Seleccione: ");
+
+    int op;
+    if (!int.TryParse(Console.ReadLine(), out op))
     {
-        SistemaPacientes sistema = new SistemaPacientes();
-        bool salir = false;
+        Console.WriteLine("Error, escriba un número");
+        continue;
+    }
 
-        while (!salir)
-        {
-            Console.WriteLine("\n--- SISTEMA DE PACIENTES ---");
-            Console.WriteLine("1. Agregar paciente");
-            Console.WriteLine("2. Ver pacientes");
-            Console.WriteLine("3. Buscar paciente");
-            Console.WriteLine("4. Eliminar paciente");
-            Console.WriteLine("5. Salir");
-            Console.Write("Seleccione: ");
-
-            int op;
-            if (!int.TryParse(Console.ReadLine(), out op))
-            {
-                Console.WriteLine("Error, escriba un número");
-                continue;
-            }
-
-            switch (op)
-            {
-                case 1: sistema.AgregarPaciente(); break;
-                case 2: sistema.VerPacientes(); break;
-                case 3: sistema.BuscarPaciente(); break;
-                case 4: sistema.EliminarPaciente(); break;
-                case 5: salir = true; break;
-                default: Console.WriteLine("Opción incorrecta"); break;
-            }
-        }
+    switch (op)
+    {
+        case 1: sistema.AgregarPaciente(); break;
+        case 2: sistema.VerPacientes(); break;
+        case 3: sistema.BuscarPaciente(); break;
+        case 4: sistema.EliminarPaciente(); break;
+        case 5: salir = true; break;
+        default: Console.WriteLine("Opción incorrecta"); break;
     }
 }
